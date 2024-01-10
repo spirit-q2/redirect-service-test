@@ -19,3 +19,22 @@ Service that allows for redirecting incoming HTTP traffic to a number of individ
 
 ## How to run the tests
 1. Run `PYTHONPATH=. poetry run pytest` in the root directory
+
+
+---
+
+## Notes on Non-Functional Requirements
+
+### Availability
+The application is highly available. It can be run in multiple instances behind a load balancer.
+
+### Scalability
+The application can be scaled in both vertical and horizontal directions.
+Horizontal scaling can be achieved by running multiple pods with the application.
+Vertical scaling can be achieved by increasing the resources allocated to the pods.
+
+### Performance
+The application is fast and lightweight. It can handle a large number of requests per second.
+
+### Observability
+To have alerts about the application's health, we can use Prometheus and Grafana. Logging can be improved to achieve the desired observability. 
