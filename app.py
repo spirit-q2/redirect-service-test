@@ -7,12 +7,12 @@ app = Flask(__name__)
 # Define domain pools
 domain_pools = {
     "pool1": [
-        {"domain": "domain-a.xyz", "weight": 2},
-        {"domain": "domain-b.xyz", "weight": 1},
+        {"domain": "http://domain-a.xyz", "weight": 2},
+        {"domain": "http://domain-b.xyz", "weight": 1},
     ],
     "pool2": [
-        {"domain": "domain-c.xyz", "weight": 1},
-        {"domain": "domain-d.xyz", "weight": 2},
+        {"domain": "http://domain-c.xyz", "weight": 1},
+        {"domain": "http://domain-d.xyz", "weight": 2},
     ],
 }
 
@@ -26,6 +26,10 @@ def redirect_to_domain(pool_id):
     if pool_id in domain_pools:
         chosen_domain = choose_domain(domain_pools[pool_id])
         log_request(pool_id, chosen_domain)
+
+        query_string = request.query_string.decode('utf-8')
+        if query_string:
+            chosen_domain['domain'] += '?' + query_string
 
         # we will use 307 to preserve the request method
         return redirect(chosen_domain['domain'], code=307)

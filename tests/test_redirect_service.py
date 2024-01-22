@@ -14,8 +14,8 @@ def client():
 @pytest.mark.parametrize(
     "pool_id, expected_domains",
     [
-        ("pool1", ["domain-a.xyz", "domain-b.xyz"]),
-        ("pool2", ["domain-c.xyz", "domain-d.xyz"]),
+        ("pool1", ["http://domain-a.xyz", "http://domain-b.xyz"]),
+        ("pool2", ["http://domain-c.xyz", "http://domain-d.xyz"]),
     ],
 )
 def test_redirect_endpoint(client, pool_id, expected_domains):
